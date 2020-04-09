@@ -53,7 +53,7 @@ public class Jokenpo {
                     opponentPlayer.setMove(options.getMove());
                 }
 
-                player.play(player, opponentPlayer);
+                player.play(opponentPlayer);
 
                 player.scoreboard();
                 opponentPlayer.scoreboard();

@@ -54,27 +54,27 @@ public class Player {
         return this.ties;
     }
 
-    public void play(Player playerOne, Player playerTwo) {
-        Options.Move playerTwoMove = playerTwo.name == Options.Opponent.COMPUTER.toString()
+    public void play(Player opponent) {
+        Options.Move opponentMove = opponent.name == Options.Opponent.COMPUTER.toString()
                 ? Options.Move.values()[(int) (Math.random() * Options.Move.values().length)]
-                : playerTwo.getMove();
+                : opponent.getMove();
 
-        System.out.println(String.format("========== %s VS %s ==========", playerOne.getMove(), playerTwoMove));
+        System.out.println(String.format("========== %s VS %s ==========", this.getMove(), opponentMove));
 
         var winnerText = "Jogador(a) %s ganhou! Parabéns. :)";
-        if (playerOne.move.wins(playerTwoMove)) {
-            playerOne.addVictories();
-            playerTwo.addDefeats();
+        if (this.move.wins(opponentMove)) {
+            this.addVictories();
+            opponent.addDefeats();
 
-            System.out.println(String.format(winnerText, playerOne.getName()));
-        } else if (playerOne.move.loses(playerTwoMove)) {
-            playerTwo.addVictories();
-            playerOne.addDefeats();
+            System.out.println(String.format(winnerText, this.getName()));
+        } else if (this.move.loses(opponentMove)) {
+            opponent.addVictories();
+            this.addDefeats();
 
-            System.out.println(String.format(winnerText, playerTwo.getName()));
+            System.out.println(String.format(winnerText, opponent.getName()));
         } else {
-            playerTwo.addTies();
-            playerOne.addTies();
+            this.addTies();
+            opponent.addTies();
 
             System.out.println("Empate!");
         }
