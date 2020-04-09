@@ -54,8 +54,7 @@ public class App {
     public static void jokenpo(String opponentType, Player player, Player opponent) {
         var move = askMove(player, true);
 
-        var isAnswerRight = (move.charAt(0) == 'p' || move.charAt(0) == 't') || move.length() < 2;
-        while (!isAnswerRight)
+        while (!(move.charAt(0) == 'p' || move.charAt(0) == 't') || move.length() < 2)
             move = askMove(player, false);
 
         player.setMove(Move.convert(move));
@@ -66,7 +65,7 @@ public class App {
         } else {
             move = askMove(opponent, true);
 
-            while (!isAnswerRight)
+            while (!(move.charAt(0) == 'p' || move.charAt(0) == 't') || move.length() < 2)
                 move = askMove(opponent, false);
 
             opponent.setMove(Move.convert(move));
@@ -81,6 +80,6 @@ public class App {
         else
             System.out.format("Por favor, responda a pergunta corretamente!\n%s\n", moveQuestion);
 
-        return new String(System.console().readPassword());
+        return new String(System.console().readPassword()).toLowerCase();
     }
 }
