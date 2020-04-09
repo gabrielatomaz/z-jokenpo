@@ -34,9 +34,16 @@ public class App {
                 opponent.setName(scanner.nextLine());
             }
 
+            var computer = Opponent.COMPUTER.toString();
+            if (opponentType == computer)
+                opponent.setName(computer);
+
             var playing = true;
             while (playing) {
-                jokenpo(opponentType, player, opponent);
+                player.defineMove();
+
+                if (opponentType == Opponent.PERSON.toString())
+                    opponent.defineMove();
 
                 player.play(opponent);
 
@@ -49,35 +56,5 @@ public class App {
         } catch (Exception error) {
             throw new JokenpoException("Ops! Parece que alguma coisa deu errado!", error);
         }
-    }
-
-    public static void jokenpo(String opponentType, Player player, Player opponent) {
-        defineMove(player);
-
-        var computer = Opponent.COMPUTER.toString();
-        if (opponentType == computer)
-            opponent.setName(computer);
-        else
-            defineMove(opponent);
-    }
-
-    public static String askMove(Player player, boolean isFirstTime) {
-        var moveQuestion = String.format("%s, pedra, papel ou tesoura?", player.getName());
-
-        if (isFirstTime)
-            System.out.println(moveQuestion);
-        else
-            System.out.format("Por favor, responda a pergunta corretamente!\n%s\n", moveQuestion);
-
-        return new String(System.console().readPassword()).toLowerCase();
-    }
-
-    public static void defineMove(Player player) {
-        var move = askMove(player, true);
-
-        while (!(move.charAt(0) == 'p' || move.charAt(0) == 't') || move.length() < 2)
-            move = askMove(player, false);
-
-        player.setMove(Move.convert(move));
     }
 }

@@ -84,6 +84,26 @@ public class Player {
         }
     }
 
+    private String askMove(boolean isFirstTime) {
+        var moveQuestion = String.format("%s, pedra, papel ou tesoura?", this.getName());
+
+        if (isFirstTime)
+            System.out.println(moveQuestion);
+        else
+            System.out.format("Por favor, responda a pergunta corretamente!\n%s\n", moveQuestion);
+
+        return new String(System.console().readPassword()).toLowerCase();
+    }
+
+    public void defineMove() {
+        var move = askMove(true);
+
+        while (!(move.charAt(0) == 'p' || move.charAt(0) == 't') || move.length() < 2)
+            move = askMove(false);
+
+        this.setMove(Move.convert(move));
+    }
+
     public void scoreboard() {
         System.out.format("========== RESULTADOS [%s] ==========\n", this.getName().toUpperCase());
         System.out.format("Vitórias: %d\n", this.getVictories());
