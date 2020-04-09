@@ -1,3 +1,5 @@
+package app;
+
 public class Options {
     public enum Move {
         ROCK {

@@ -1,8 +1,11 @@
-import java.util.ArrayList;
+package app;
+
+import app.Options.Move;
+import app.Options.Opponent;
 
 public class Player {
     private String name;
-    private Options.Move move;
+    private Move move;
     private int victories;
     private int defeats;
     private int ties;
@@ -22,11 +25,11 @@ public class Player {
         this.name = name;
     }
 
-    public Options.Move getMove() {
+    public Move getMove() {
         return this.move;
     }
 
-    public void setMove(Options.Move move) {
+    public void setMove(Move move) {
         this.move = move;
     }
 
@@ -55,8 +58,8 @@ public class Player {
     }
 
     public void play(Player opponent) {
-        Options.Move opponentMove = opponent.name == Options.Opponent.COMPUTER.toString()
-                ? Options.Move.values()[(int) (Math.random() * Options.Move.values().length)]
+        Move opponentMove = opponent.name == Opponent.COMPUTER.toString()
+                ? Move.values()[(int) (Math.random() * Move.values().length)]
                 : opponent.getMove();
 
         System.out.format("========== %s VS %s ==========\n", this.getMove().toString().toUpperCase(),

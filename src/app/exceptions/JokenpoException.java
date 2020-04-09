@@ -1,3 +1,5 @@
+package app.exceptions;
+
 public class JokenpoException extends Exception {
 
     private static final long serialVersionUID = 1L;
