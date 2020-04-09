@@ -13,7 +13,7 @@ public class Options {
 
             @Override
             public String toString() {
-                return "PEDRA";
+                return "Pedra";
             }
         },
         PAPER {
@@ -28,7 +28,7 @@ public class Options {
 
             @Override
             public String toString() {
-                return "PAPEL";
+                return "Papel";
             }
         },
         SCISSORS {
@@ -43,7 +43,7 @@ public class Options {
 
             @Override
             public String toString() {
-                return "TESOURA";
+                return "Tesoura";
             }
         };
 
@@ -63,13 +63,13 @@ public class Options {
         COMPUTER {
             @Override
             public String toString() {
-                return "COMPUTADOR";
+                return "Computador";
             }
         },
         PERSON {
             @Override
             public String toString() {
-                return "PESSOA";
+                return "Pessoa";
             }
         };
 
