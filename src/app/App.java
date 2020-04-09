@@ -2,7 +2,6 @@ package app;
 
 import java.util.Scanner;
 
-import app.Options.Move;
 import app.Options.Opponent;
 import app.exceptions.JokenpoException;
 
