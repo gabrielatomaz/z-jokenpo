@@ -1,62 +1,67 @@
+
 import java.util.Scanner;
+import Exceptions;
 
 public class Jokenpo {
     public static void main(String[] args) throws JokenpoException {
         try {
-            System.out.println("Olá! :) \n===========Bem-vindo ao jogo=========== \n");
+            System.out.println("OLÁ! :)\n===========BEM-VINDO AO JOGO===========\n");
 
             var scanner = new Scanner(System.in);
-            var options = new Options();
             var player = new Player();
-            var opponentPlayer = new Player();
-            
+            var opponent = new Player();
+
             System.out.println("Qual o seu nome?");
             player.setName(scanner.nextLine());
-            
+
             var opponentQuestion = "Você deseja jogar com um computador ou oponente?";
             System.out.println(opponentQuestion);
-            var opponent = scanner.nextLine().toLowerCase();
-            while (!(opponent.charAt(0) == 'c' || opponent.charAt(0) == 'o')) {
+            var opponentType = scanner.nextLine().toLowerCase();
+
+            while (!(opponentType.charAt(0) == 'c' || opponentType.charAt(0) == 'o')) {
                 System.out.format("Por favor, responda a pergunta corretamente!\n%s\n", opponentQuestion);
-                opponent = scanner.nextLine().toLowerCase();
+                opponentType = scanner.nextLine().toLowerCase();
             }
-            options.setOpponent(opponent);
-            
+
+            opponentType = Options.Opponent.convert(opponentType).toString();
+
+            if (opponentType == Options.Opponent.PERSON.toString()) {
+                System.out.println("Qual o nome do seu oponente?");
+                opponent.setName(scanner.nextLine());
+            }
+
             var playing = true;
             while (playing) {
                 var moveQuestion = String.format("%s, pedra, papel ou tesoura?", player.getName());
                 System.out.println(moveQuestion);
                 var move = scanner.nextLine().toLowerCase();
+
                 while (!(move.charAt(0) == 'p' || move.charAt(0) == 't') || move.length() < 2) {
                     System.out.format("Por favor, responda a pergunta corretamente!\n%s\n", moveQuestion);
                     move = scanner.nextLine().toLowerCase();
                 }
-                options.setMove(move);
 
-                player.setMove(options.getMove());
+                player.setMove(Options.Move.convert(move));
 
-                if (options.getOpponent() == Options.Opponent.COMPUTER) {
-                    opponentPlayer.setName(Options.Opponent.COMPUTER.toString());
+                if (opponentType == Options.Opponent.COMPUTER.toString()) {
+                    opponent.setName(Options.Opponent.COMPUTER.toString());
                 } else {
-                    System.out.println("Qual o nome do seu oponente?");
-                    opponentPlayer.setName(scanner.nextLine());
-
-                    moveQuestion = String.format("%s, pedra, papel ou tesoura?", opponentPlayer.getName());
+                    moveQuestion = String.format("%s, pedra, papel ou tesoura?", opponent.getName());
                     System.out.println(moveQuestion);
                     move = scanner.nextLine().toLowerCase();
+                    
                     while (!(move.charAt(0) == 'p' || move.charAt(0) == 't') || move.length() < 2) {
                         System.out.format("Por favor, responda a pergunta corretamente!\n%s\n", moveQuestion);
                         move = scanner.nextLine().toLowerCase();
                     }
-                    options.setMove(move);
 
-                    opponentPlayer.setMove(options.getMove());
+                    opponent.setMove(Options.Move.convert(move));
                 }
 
-                player.play(opponentPlayer);
+                player.play(opponent);
 
                 player.scoreboard();
-                opponentPlayer.scoreboard();
+                opponent.scoreboard();
 
                 System.out.println("Deseja jogar novamente?");
                 playing = scanner.nextLine().toLowerCase().equals("sim");

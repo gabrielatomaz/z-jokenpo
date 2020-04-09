@@ -81,7 +81,7 @@ public class Player {
     }
 
     public void scoreboard() {
-        System.out.println(String.format("========== RESULTADOS %s ==========", this.getName()));
+        System.out.println(String.format("========== RESULTADOS [%s] ==========", this.getName().toUpperCase()));
         System.out.println(String.format("Vitórias: %d", this.getVictories()));
         System.out.println(String.format("Derrotas: %d", this.getDefeats()));
         System.out.println(String.format("Empates: %d", this.getTies()));
