@@ -36,31 +36,7 @@ public class App {
 
             var playing = true;
             while (playing) {
-                var moveQuestion = String.format("%s, pedra, papel ou tesoura?", player.getName());
-                System.out.println(moveQuestion);
-                var move = new String(System.console().readPassword());
-
-                while (!(move.charAt(0) == 'p' || move.charAt(0) == 't') || move.length() < 2) {
-                    System.out.format("Por favor, responda a pergunta corretamente!\n%s\n", moveQuestion);
-                    move = new String(System.console().readPassword());
-                }
-
-                player.setMove(Move.convert(move));
-
-                if (opponentType == Opponent.COMPUTER.toString()) {
-                    opponent.setName(Opponent.COMPUTER.toString());
-                } else {
-                    moveQuestion = String.format("%s, pedra, papel ou tesoura?", opponent.getName());
-                    System.out.println(moveQuestion);
-                    move = new String(System.console().readPassword());
-
-                    while (!(move.charAt(0) == 'p' || move.charAt(0) == 't') || move.length() < 2) {
-                        System.out.format("Por favor, responda a pergunta corretamente!\n%s\n", moveQuestion);
-                        move = new String(System.console().readPassword());
-                    }
-
-                    opponent.setMove(Move.convert(move));
-                }
+                jokenpo(opponentType, player, opponent);
 
                 player.play(opponent);
 
@@ -70,8 +46,41 @@ public class App {
                 System.out.println("Deseja jogar novamente?");
                 playing = scanner.nextLine().toLowerCase().equals("sim");
             }
-        } catch (Exception e) {
-            throw new JokenpoException("Ops! Parece que alguma coisa deu errado!", e);
+        } catch (Exception error) {
+            throw new JokenpoException("Ops! Parece que alguma coisa deu errado!", error);
         }
+    }
+
+    public static void jokenpo(String opponentType, Player player, Player opponent) {
+        var move = askMove(player, true);
+
+        var isAnswerRight = (move.charAt(0) == 'p' || move.charAt(0) == 't') || move.length() < 2;
+        while (!isAnswerRight)
+            move = askMove(player, false);
+
+        player.setMove(Move.convert(move));
+
+        var computer = Opponent.COMPUTER.toString();
+        if (opponentType == computer) {
+            opponent.setName(computer);
+        } else {
+            move = askMove(opponent, true);
+
+            while (!isAnswerRight)
+                move = askMove(opponent, false);
+
+            opponent.setMove(Move.convert(move));
+        }
+    }
+
+    public static String askMove(Player player, boolean isFirstTime) {
+        var moveQuestion = String.format("%s, pedra, papel ou tesoura?", player.getName());
+
+        if (isFirstTime)
+            System.out.println(moveQuestion);
+        else
+            System.out.format("Por favor, responda a pergunta corretamente!\n%s\n", moveQuestion);
+
+        return new String(System.console().readPassword());
     }
 }
