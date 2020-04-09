@@ -31,7 +31,7 @@ public class Player {
     }
 
     public void addVictories() {
-        this.victories++;
+        this.victories += 1;
     }
 
     public int getVictories() {
@@ -39,19 +39,15 @@ public class Player {
     }
 
     public void addDefeats() {
-        this.defeats++;
+        this.defeats += 1;
     }
 
     public int getDefeats() {
         return this.defeats;
     }
 
-    public int setWins() {
-        return this.wins;
-    }
-
     public void addTies() {
-        this.ties++;
+        this.ties += 1;
     }
 
     public int getTies() {
@@ -63,15 +59,31 @@ public class Player {
                 ? Options.Move.values()[(int) (Math.random() * Options.Move.values().length)]
                 : playerTwo.getMove();
 
+        System.out.println(String.format("========== %s VS %s ==========", playerOne.getMove(), playerTwoMove));
+
+        var winnerText = "Jogador(a) %s ganhou! Parabéns. :)";
         if (playerOne.move.wins(playerTwoMove)) {
             playerOne.addVictories();
             playerTwo.addDefeats();
+
+            System.out.println(String.format(winnerText, playerOne.getName()));
         } else if (playerOne.move.loses(playerTwoMove)) {
             playerTwo.addVictories();
             playerOne.addDefeats();
+
+            System.out.println(String.format(winnerText, playerTwo.getName()));
         } else {
             playerTwo.addTies();
             playerOne.addTies();
+
+            System.out.println("Empate!");
         }
+    }
+
+    public void scoreboard() {
+        System.out.println(String.format("========== RESULTADOS %s ==========", this.getName()));
+        System.out.println(String.format("Vitórias: %d", this.getVictories()));
+        System.out.println(String.format("Derrotas: %d", this.getDefeats()));
+        System.out.println(String.format("Empates: %d", this.getTies()));
     }
 }
