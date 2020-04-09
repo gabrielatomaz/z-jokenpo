@@ -52,24 +52,13 @@ public class App {
     }
 
     public static void jokenpo(String opponentType, Player player, Player opponent) {
-        var move = askMove(player, true);
-
-        while (!(move.charAt(0) == 'p' || move.charAt(0) == 't') || move.length() < 2)
-            move = askMove(player, false);
-
-        player.setMove(Move.convert(move));
+        defineMove(player);
 
         var computer = Opponent.COMPUTER.toString();
-        if (opponentType == computer) {
+        if (opponentType == computer)
             opponent.setName(computer);
-        } else {
-            move = askMove(opponent, true);
-
-            while (!(move.charAt(0) == 'p' || move.charAt(0) == 't') || move.length() < 2)
-                move = askMove(opponent, false);
-
-            opponent.setMove(Move.convert(move));
-        }
+        else
+            defineMove(opponent);
     }
 
     public static String askMove(Player player, boolean isFirstTime) {
@@ -81,5 +70,14 @@ public class App {
             System.out.format("Por favor, responda a pergunta corretamente!\n%s\n", moveQuestion);
 
         return new String(System.console().readPassword()).toLowerCase();
+    }
+
+    public static void defineMove(Player player) {
+        var move = askMove(player, true);
+
+        while (!(move.charAt(0) == 'p' || move.charAt(0) == 't') || move.length() < 2)
+            move = askMove(player, false);
+
+        player.setMove(Move.convert(move));
     }
 }
