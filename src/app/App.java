@@ -41,7 +41,7 @@ public class App {
             while (playing) {
                 player.defineMove();
 
-                if (opponentType == Opponent.PERSON.toString())
+                if (opponentType != computer)
                     opponent.defineMove();
 
                 player.play(opponent);
