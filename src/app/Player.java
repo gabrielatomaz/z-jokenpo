@@ -81,6 +81,9 @@ public class Player {
 
             System.out.println("Empate!");
         }
+
+        this.scoreboard();
+        opponent.scoreboard();
     }
 
     public void defineMove() {
@@ -92,7 +95,7 @@ public class Player {
         this.setMove(Move.convert(move));
     }
 
-    public void scoreboard() {
+    private void scoreboard() {
         System.out.format("========== RESULTADOS [%s] ==========\n", this.getName().toUpperCase());
         System.out.format("Vitórias: %d\n", this.getVictories());
         System.out.format("Derrotas: %d\n", this.getDefeats());

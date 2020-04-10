@@ -45,9 +45,6 @@ public class App {
 
                 player.play(opponent);
 
-                player.scoreboard();
-                opponent.scoreboard();
-
                 System.out.println("Deseja jogar novamente?");
                 playing = scanner.nextLine().toLowerCase().equals("sim");
             }
