@@ -28,20 +28,19 @@ public class App {
 
             opponentType = Opponent.convert(opponentType).toString();
 
-            if (opponentType == Opponent.PERSON.toString()) {
+            var person = Opponent.PERSON.toString();
+            if (opponentType == person) {
                 System.out.println("Qual o nome do seu oponente?");
                 opponent.setName(scanner.nextLine());
-            }
-
-            var computer = Opponent.COMPUTER.toString();
-            if (opponentType == computer)
-                opponent.setName(computer);
+            } else {
+                opponent.setName(Opponent.COMPUTER.toString());
+            }   
 
             var playing = true;
             while (playing) {
                 player.defineMove();
 
-                if (opponentType != computer)
+                if (opponentType == person)
                     opponent.defineMove();
 
                 player.play(opponent);
