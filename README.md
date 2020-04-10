@@ -29,27 +29,26 @@ A classe executada é a App, na qual os jogadores são instanciados e onde suas 
 ### Testes
 Os testes foram realizados utilizando **JUnit**.
 * ##### Move
-
-    [x] Pedra vence Tesoura 
-    **Pedra vence Papel** 
-    [x] Papel vence Pedra 
-    **Papel vence Tesoura** 
-    [x] Tesoura vence Papel 
-    **Tesoura vence Pedra** 
+    * Pedra vence Tesoura (V)
+    * Pedra vence Papel (F)
+    * Papel vence Pedra (V)
+    * Papel vence Tesoura (F)
+    * Tesoura vence Papel (V)
+    * Tesoura vence Pedra (F)
+    
  * ##### Player
- 
-    [x] Jogador vence com Papel contra Pedra 
-    **Jogador vence com Papel contra Tesoura** 
-    [x] Jogador vence com Pedra contra Tesoura 
-    **Jogador vence com Pedra contra Papel** 
-    [x] Jogador vence com Tesoura contra Papel 
-    **Jogador vence com Tesoura contra Pedra (n) vezes**
-    [x] Jogador vence com Papel contra Pedra (n) vezes
-    **Jogador vence com Papel contra Tesoura (n) vezes**
-    [x] Jogador vence com Pedra contra Tesoura (n) vezes 
-    **Jogador vence com Pedra contra Papel (n) vezes**
-    [x] Jogador vence com Tesoura contra Papel (n) vezes
-    **Jogador vence com Tesoura contra Pedra (n) vezes**
-    [x] Jogador empata com Pedra vs Pedra, Tesoura vs Tesoura e Papel vs Papel
+    * Jogador vence com Papel contra Pedra (V)
+    * Jogador vence com Papel contra Tesoura (F)
+    * Jogador vence com Pedra contra Tesoura (V)
+    * Jogador vence com Pedra contra Papel (F)
+    * Jogador vence com Tesoura contra Papel (V)
+    * Jogador vence com Tesoura contra Pedra (n) vezes (F)
+    * Jogador vence com Papel contra Pedra (n) vezes (V)
+    * Jogador vence com Papel contra Tesoura (n) vezes (F)
+    * Jogador vence com Pedra contra Tesoura (n) vezes (V)
+    * Jogador vence com Pedra contra Papel (n) vezes (F)
+    * Jogador vence com Tesoura contra Papel (n) vezes (V)
+    * Jogador vence com Tesoura contra Pedra (n) vezes (F)
+    * Jogador empata com Pedra vs Pedra, Tesoura vs Tesoura e Papel vs Papel (V)
 
 
